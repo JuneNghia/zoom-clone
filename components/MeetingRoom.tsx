@@ -60,7 +60,7 @@ const MeetingRoom = () => {
             'show-block': showParticipants,
           })}
         >
-          <CallParticipantsList onClose={() => setShowParticipants(false)} />
+          <CallParticipantsList onClose={() => setShowParticipants(false)}  />
         </div>
       </div>
       {/* video layout and call controls */}

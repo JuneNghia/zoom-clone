@@ -69,13 +69,35 @@
 
 .cl-socialButtonsIconButton {
   border: 3px solid #565761;
+  background: white;
+}
+
+.cl-socialButtonsIconButton:hover {
+  background: white;
+  opacity: 0.8;
 }
 
 .cl-internal-wkkub3 {
   color: white;
 }
-.cl-userButtonPopoverActionButton {
+.cl-userButtonPopoverActionButton,
+.cl-navbarButton,
+.cl-avatarImageActionsUpload {
   color: white;
+}
+
+.cl-avatarImageActionsUpload{
+  background-color: cornflowerblue;
+}
+
+.cl-userButtonPopoverActionButton:hover {
+  color: white;
+  text-decoration: underline
+}
+
+.cl-badge{
+  color: black;
+  background-color: blanchedalmond
 }
 
 /* =============================== */
