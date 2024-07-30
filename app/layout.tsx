@@ -11,10 +11,10 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "HuangMeet",
+  title: "C.Astudio-On",
   description: "Video calling App",
   icons: {
-    icon: "/icons/logo.svg",
+    icon: "/images/ca-studio.png",
   },
 };
 
@@ -27,7 +27,7 @@ export default function RootLayout({
         appearance={{
           layout: {
             socialButtonsVariant: "iconButton",
-            logoImageUrl: "/icons/yoom-logo.svg",
+            logoImageUrl: "/images/ca-studio.png",
           },
           variables: {
             colorText: "#fff",

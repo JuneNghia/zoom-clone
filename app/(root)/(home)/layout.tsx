@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 
 export const metadata: Metadata = {
-  title: 'HuangMeet',
+  title: 'C.Astudio-On',
   description: 'A workspace for your team, powered by Stream Chat and Clerk.',
 };
 
