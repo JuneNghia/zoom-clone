@@ -42,17 +42,17 @@ const MeetingRoom = () => {
     switch (layout) {
       case 'grid':
         return <PaginatedGridLayout />;
-      case 'speaker-right':
-        return <SpeakerLayout participantsBarPosition="left" />;
-      default:
+      case 'speaker-left':
         return <SpeakerLayout participantsBarPosition="right" />;
+      default:
+        return <SpeakerLayout participantsBarPosition="left" />;
     }
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden pt-4 text-white">
+    <section className="relative h-screen w-full text-white">
       <div className="relative flex size-full items-center justify-center">
-        <div className=" flex size-full max-w-[1000px] items-center">
+        <div className="mx-4 flex size-full max-h-[500px] max-w-[1400px] items-center">
           <CallLayout />
         </div>
         <div
@@ -60,7 +60,7 @@ const MeetingRoom = () => {
             'show-block': showParticipants,
           })}
         >
-          <CallParticipantsList onClose={() => setShowParticipants(false)}  />
+          <CallParticipantsList onClose={() => setShowParticipants(false)} />
         </div>
       </div>
       {/* video layout and call controls */}

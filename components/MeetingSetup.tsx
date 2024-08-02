@@ -37,9 +37,9 @@ const MeetingSetup = ({
   useEffect(() => {
     if (isMicCamToggled) {
       call.camera.disable();
-      call.microphone.disable();
+      call.microphone.enable();
     } else {
-      call.camera.enable();
+      call.camera.enable()
       call.microphone.enable();
     }
   }, [isMicCamToggled, call.camera, call.microphone]);

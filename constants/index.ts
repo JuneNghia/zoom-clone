@@ -9,21 +9,19 @@ export const sidebarLinks = [
     imgURL: '/icons/upcoming.svg',
     route: '/upcoming',
     label: 'Upcoming',
+    onlyAdmin: true,
   },
   {
     imgURL: '/icons/previous.svg',
     route: '/previous',
     label: 'Previous',
-  },
-  {
-    imgURL: '/icons/Video.svg',
-    route: '/recordings',
-    label: 'Recordings',
+    onlyAdmin: true,
   },
   {
     imgURL: '/icons/add-personal.svg',
     route: '/personal-room',
     label: 'Personal Room',
+    onlyAdmin: true,
   },
 ];
 
@@ -34,3 +32,5 @@ export const avatarImages = [
   '/images/avatar-4.png',
   '/images/avatar-5.png',
 ];
+
+export const listAdmin = ['nguyenminhtrungnghia@gmail.com'];

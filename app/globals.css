@@ -67,14 +67,14 @@
   height: 2px;
 }
 
-.cl-socialButtonsIconButton {
-  border: 3px solid #565761;
+.cl-socialButtonsBlockButton{
   background: white;
 }
 
-.cl-socialButtonsIconButton:hover {
+
+.cl-socialButtonsBlockButton:hover {
   background: white;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .cl-internal-wkkub3 {

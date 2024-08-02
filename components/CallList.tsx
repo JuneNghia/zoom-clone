@@ -7,12 +7,16 @@ import { useGetCalls } from '@/hooks/useGetCalls';
 import MeetingCard from './MeetingCard';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
+import { listAdmin } from '@/constants';
+import Error from 'next/error';
 
 const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
   const router = useRouter();
   const { endedCalls, upcomingCalls, callRecordings, isLoading } =
     useGetCalls();
   const [recordings, setRecordings] = useState<CallRecording[]>([]);
+  const { user } = useUser()
 
   const getCalls = () => {
     switch (type) {
@@ -62,6 +66,10 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
 
   const calls = getCalls();
   const noCallsMessage = getNoCallsMessage();
+
+  if(listAdmin.findIndex((email) => user?.primaryEmailAddress?.emailAddress === email) === -1) {
+    return <Error statusCode={403}/>
+  }
 
   return (
     <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
