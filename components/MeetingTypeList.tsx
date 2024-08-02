@@ -15,9 +15,9 @@ import { useUser } from '@clerk/nextjs';
 import Loader from './Loader';
 import { Textarea } from './ui/textarea';
 import ReactDatePicker from 'react-datepicker';
-import { useToast } from './ui/use-toast';
 import { Input } from './ui/input';
 import { listAdmin } from '@/constants';
+import notify from '@/lib/notify';
 
 const initialValues = {
   dateTime: new Date(),
@@ -34,7 +34,6 @@ const MeetingTypeList = () => {
   const [callDetail, setCallDetail] = useState<Call>();
   const client = useStreamVideoClient();
   const { user } = useUser();
-  const { toast } = useToast();
 
   const createMeeting = async () => {
     if (
@@ -47,10 +46,10 @@ const MeetingTypeList = () => {
       return;
     try {
       if (!values.dateTime) {
-        toast({ title: 'Please select a date and time' });
+        notify('info', 'Please select a date and time');
         return;
       }
-      const id = crypto.randomUUID();
+      const id = crypto.randomUUID()
       const call = client.call('default', id);
       if (!call) throw new Error('Failed to create meeting');
       const startsAt =
@@ -61,6 +60,7 @@ const MeetingTypeList = () => {
           starts_at: startsAt,
           custom: {
             description,
+            
           },
         },
       });
@@ -75,12 +75,10 @@ const MeetingTypeList = () => {
       if (!values.description) {
         router.push(`/meeting/${call.id}`);
       }
-      toast({
-        title: 'Meeting Created',
-      });
+      notify('success', 'Meeting Created');
     } catch (error) {
       console.error(error);
-      toast({ title: 'Failed to create Meeting' });
+      notify('error', 'Failed to create Meeting');
     }
   };
 
@@ -159,7 +157,7 @@ const MeetingTypeList = () => {
           title="Meeting Created"
           handleClick={() => {
             navigator.clipboard.writeText(meetingLink);
-            toast({ title: 'Link Copied' });
+            notify('success', 'Link Copied');
           }}
           image={'/icons/checked.svg'}
           buttonIcon="/icons/copy.svg"

@@ -6,7 +6,8 @@ import { Inter } from 'next/font/google';
 import '@stream-io/video-react-sdk/dist/css/styles.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
+import { Bounce, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -42,7 +43,20 @@ export default function RootLayout({
         }}
       >
         <body className={`${inter.className} bg-dark-2`}>
-          <Toaster />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            limit={3}
+            transition={Bounce}
+          />
           {children}
         </body>
       </ClerkProvider>

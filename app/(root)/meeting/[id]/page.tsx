@@ -35,16 +35,16 @@ const MeetingPage = () => {
     return <Alert title="You are not allowed to join this meeting" />;
 
   return (
-    <main className="h-screen w-full">
-      <StreamCall call={call}>
-        <StreamTheme>
+    <main>
+      <StreamTheme as='main' allowFullScreen>
+        <StreamCall call={call}>
           {!isSetupComplete ? (
             <MeetingSetup setIsSetupComplete={setIsSetupComplete} />
           ) : (
             <MeetingRoom />
           )}
-        </StreamTheme>
-      </StreamCall>
+        </StreamCall>
+      </StreamTheme>
     </main>
   );
 };

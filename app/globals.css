@@ -15,7 +15,7 @@
 }
 
 .str-video__speaker-layout__wrapper {
-  max-height: 700px;
+  height: 100%;
 }
 
 .str-video__participant-details {
@@ -36,6 +36,7 @@
   border-radius: 10px;
   color: white;
   height: 100%;
+  border: 1px solid #888
 }
 
 .str-video__call-controls__button {
