@@ -2,25 +2,25 @@ export const sidebarLinks = [
   {
     imgURL: '/icons/Home.svg',
     route: '/',
-    label: 'Home',
+    label: 'Trang chủ',
   },
 
   {
     imgURL: '/icons/upcoming.svg',
     route: '/upcoming',
-    label: 'Upcoming',
+    label: 'Lịch sắp tới',
     onlyAdmin: true,
   },
   {
     imgURL: '/icons/previous.svg',
     route: '/previous',
-    label: 'Previous',
+    label: 'Lịch sử',
     onlyAdmin: true,
   },
   {
     imgURL: '/icons/add-personal.svg',
     route: '/personal-room',
-    label: 'Personal Room',
+    label: 'Phòng cá nhân',
     onlyAdmin: true,
   },
 ];

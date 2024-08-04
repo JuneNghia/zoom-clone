@@ -8,6 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './globals.css';
 import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { viVN } from '@/public/locales/vi-VN';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,25 +24,26 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
-      <ClerkProvider
-        appearance={{
-          layout: {
-            socialButtonsVariant: 'blockButton',
-            logoImageUrl: '/images/ca-studio.png',
-          },
-          variables: {
-            colorText: '#fff',
-            colorPrimary: '#0E78F9',
-            colorBackground: '#1C1F2E',
-            colorInputBackground: '#252A41',
-            colorInputText: '#fff',
-          },
-          elements: {
-            footer: 'hidden',
-          },
-        }}
-      >
+    <ClerkProvider
+      localization={viVN}
+      appearance={{
+        layout: {
+          socialButtonsVariant: 'blockButton',
+          logoImageUrl: '/images/ca-studio.png',
+        },
+        variables: {
+          colorText: '#fff',
+          colorPrimary: '#0E78F9',
+          colorBackground: '#1C1F2E',
+          colorInputBackground: '#252A41',
+          colorInputText: '#fff',
+        },
+        elements: {
+          footer: 'hidden',
+        },
+      }}
+    >
+      <html lang='en'>
         <body className={`${inter.className} bg-dark-2`}>
           <ToastContainer
             position="top-right"
@@ -59,7 +61,7 @@ export default function RootLayout({
           />
           {children}
         </body>
-      </ClerkProvider>
-    </html>
+      </html>
+    </ClerkProvider>
   );
 }

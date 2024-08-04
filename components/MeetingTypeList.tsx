@@ -18,6 +18,7 @@ import ReactDatePicker from 'react-datepicker';
 import { Input } from './ui/input';
 import { listAdmin } from '@/constants';
 import notify from '@/lib/notify';
+import { vi } from 'date-fns/locale/vi';
 
 const initialValues = {
   dateTime: new Date(),
@@ -46,21 +47,20 @@ const MeetingTypeList = () => {
       return;
     try {
       if (!values.dateTime) {
-        notify('info', 'Please select a date and time');
+        notify('info', 'Vui lòng chọn thời gian');
         return;
       }
-      const id = crypto.randomUUID()
+      const id = crypto.randomUUID();
       const call = client.call('default', id);
-      if (!call) throw new Error('Failed to create meeting');
+      if (!call) throw new Error('Đã xảy ra lỗi khi tạo cuộc họp');
       const startsAt =
         values.dateTime.toISOString() || new Date(Date.now()).toISOString();
-      const description = values.description || 'Instant Meeting';
+      const description = values.description || 'Cuộc họp tức thì';
       await call.getOrCreate({
         data: {
           starts_at: startsAt,
           custom: {
             description,
-            
           },
         },
       });
@@ -75,10 +75,10 @@ const MeetingTypeList = () => {
       if (!values.description) {
         router.push(`/meeting/${call.id}`);
       }
-      notify('success', 'Meeting Created');
+      notify('success', 'Tạo cuộc họp mới thành công');
     } catch (error) {
       console.error(error);
-      notify('error', 'Failed to create Meeting');
+      notify('error', 'Đã xảy ra lỗi khi tạo cuộc họp');
     }
   };
 
@@ -90,8 +90,8 @@ const MeetingTypeList = () => {
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
       <HomeCard
         img="/icons/join-meeting.svg"
-        title="Join Meeting"
-        description="via invitation link"
+        title="Tham gia cuộc họp"
+        description="bằng đường dẫn"
         className="bg-blue-1"
         handleClick={() => setMeetingState('isJoiningMeeting')}
       />
@@ -102,14 +102,14 @@ const MeetingTypeList = () => {
           <>
             <HomeCard
               img="/icons/add-meeting.svg"
-              title="New Meeting"
-              description="Start an instant meeting"
+              title="Cuộc hợp mới"
+              description="Khởi tạo tức thì"
               handleClick={() => setMeetingState('isInstantMeeting')}
             />
             <HomeCard
               img="/icons/schedule.svg"
-              title="Schedule Meeting"
-              description="Plan your meeting"
+              title="Lên lịch cuộc họp"
+              description="Khởi tạo theo thời gian"
               className="bg-purple-1"
               handleClick={() => setMeetingState('isScheduleMeeting')}
             />
@@ -120,12 +120,12 @@ const MeetingTypeList = () => {
         <MeetingModal
           isOpen={meetingState === 'isScheduleMeeting'}
           onClose={() => setMeetingState(undefined)}
-          title="Create Meeting"
+          title="Tạo cuộc họp"
           handleClick={createMeeting}
         >
           <div className="flex flex-col gap-2.5">
             <label className="text-base font-normal leading-[22.4px] text-sky-2">
-              Add a description
+              Thêm mô tả
             </label>
             <Textarea
               className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -136,7 +136,7 @@ const MeetingTypeList = () => {
           </div>
           <div className="flex w-full flex-col gap-2.5">
             <label className="text-base font-normal leading-[22.4px] text-sky-2">
-              Select Date and Time
+              Chọn thời gian
             </label>
             <ReactDatePicker
               selected={values.dateTime}
@@ -144,9 +144,10 @@ const MeetingTypeList = () => {
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={15}
-              timeCaption="time"
-              dateFormat="MMMM d, yyyy h:mm aa"
+              timeCaption="Chọn giờ"
+              dateFormat="HH:mm - dd/MM/yyyy"
               className="w-full rounded bg-dark-3 p-2 focus:outline-none"
+              locale={vi}
             />
           </div>
         </MeetingModal>
@@ -154,28 +155,28 @@ const MeetingTypeList = () => {
         <MeetingModal
           isOpen={meetingState === 'isScheduleMeeting'}
           onClose={() => setMeetingState(undefined)}
-          title="Meeting Created"
+          title="Cuộc họp đã được lên lịch"
           handleClick={() => {
             navigator.clipboard.writeText(meetingLink);
-            notify('success', 'Link Copied');
+            notify('success', 'Sao chép thành công');
           }}
           image={'/icons/checked.svg'}
           buttonIcon="/icons/copy.svg"
           className="text-center"
-          buttonText="Copy Meeting Link"
+          buttonText="Sao chép đường dẫn"
         />
       )}
 
       <MeetingModal
         isOpen={meetingState === 'isJoiningMeeting'}
         onClose={() => setMeetingState(undefined)}
-        title="Type the link here"
+        title="Nhập đường dẫn"
         className="text-center"
-        buttonText="Join Meeting"
+        buttonText="Tham gia cuộc họp"
         handleClick={() => router.push(values.link)}
       >
         <Input
-          placeholder="Meeting link"
+          placeholder={`${process.env.NEXT_PUBLIC_BASE_URL}/meeting/XXX`}
           onChange={(e) => setValues({ ...values, link: e.target.value })}
           className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
         />
@@ -184,9 +185,9 @@ const MeetingTypeList = () => {
       <MeetingModal
         isOpen={meetingState === 'isInstantMeeting'}
         onClose={() => setMeetingState(undefined)}
-        title="Start an Instant Meeting"
+        title="Khởi tạo cuộc họp mới"
         className="text-center"
-        buttonText="Start Meeting"
+        buttonText="Tạo cuộc họp"
         handleClick={createMeeting}
       />
     </section>
