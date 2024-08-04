@@ -96,7 +96,7 @@ const MeetingSetup = ({
         });
       }
     });
-  }, [call, router, setIsSetupComplete]);
+  }, [call, router, setIsSetupComplete, user]);
 
   if (isLoading) {
     return <Loader />;

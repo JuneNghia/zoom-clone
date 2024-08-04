@@ -3,8 +3,8 @@ import emailjs from '@emailjs/browser';
 
 const sendEmail = (
   user: UserResource | null | undefined,
-  onSucess: VoidFunction,
-  onError: VoidFunction,
+  onSucess: () => void,
+  onError: () => void,
 ) => {
   if (
     process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID &&
