@@ -1,3 +1,5 @@
+import { CallLayoutType } from '@/lib/enum';
+
 export const sidebarLinks = [
   {
     imgURL: '/icons/Home.svg',
@@ -34,3 +36,14 @@ export const avatarImages = [
 ];
 
 export const listAdmin = ['nguyenminhtrungnghia@gmail.com'];
+
+export const listLayout = [
+  {
+    label: 'Toàn bộ',
+    value: CallLayoutType.grid,
+  },
+  {
+    label: 'Tiêu điểm',
+    value: CallLayoutType.speaker,
+  },
+];

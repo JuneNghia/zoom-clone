@@ -67,7 +67,7 @@ const MeetingCard = ({
             <Button
               onClick={() => {
                 navigator.clipboard.writeText(link);
-                notify('success', 'Link Copied');
+                notify('success', 'Sao chép thành công');
               }}
               className="bg-dark-4 px-6"
             >
@@ -77,7 +77,7 @@ const MeetingCard = ({
                 width={20}
                 height={20}
               />
-              &nbsp; Copy Link
+              &nbsp; Sao chép đường dẫn
             </Button>
           </div>
         )}

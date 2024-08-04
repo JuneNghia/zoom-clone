@@ -34,11 +34,11 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
   const getNoCallsMessage = () => {
     switch (type) {
       case 'ended':
-        return 'No Previous Calls';
+        return 'Không có lịch sử cuộc họp';
       case 'upcoming':
-        return 'No Upcoming Calls';
+        return 'Không có cuộc họp sắp tới';
       case 'recordings':
-        return 'No Recordings';
+        return 'Không có lịch sử bản ghi cuộc họp';
       default:
         return '';
     }
@@ -87,7 +87,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
             title={
               (meeting as Call).state?.custom?.description ||
               (meeting as CallRecording).filename?.substring(0, 20) ||
-              'No Description'
+              'Không có mô tả'
             }
             date={
               (meeting as Call).state?.startsAt?.toLocaleString() ||
