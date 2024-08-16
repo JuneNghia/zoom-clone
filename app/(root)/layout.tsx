@@ -13,8 +13,10 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (user && user.firstName && user.lastName && user.primaryEmailAddress) {
-        localStorage.setItem('fullName', `${user.firstName} ${user.lastName}`);
-        localStorage.setItem('email', user.primaryEmailAddress?.emailAddress);
+        localStorage.setItem(
+          'dataUser',
+          `${user.firstName} ${user.lastName} - ${user.primaryEmailAddress.emailAddress}`,
+        );
       }
     }, 1000);
 

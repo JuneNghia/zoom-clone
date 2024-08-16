@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { SignIn, useUser } from '@clerk/nextjs';
 import { useEffect } from 'react';
