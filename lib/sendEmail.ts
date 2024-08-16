@@ -3,8 +3,8 @@ import emailjs from '@emailjs/browser';
 
 const sendEmail = (
   user: UserResource | null | undefined,
-  onSucess: () => void,
-  onError: () => void,
+  onSucess?: () => void,
+  onError?: () => void,
 ) => {
   if (
     process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID &&
@@ -24,15 +24,15 @@ const sendEmail = (
       )
       .then(
         () => {
-          onSucess();
+          onSucess && onSucess();
         },
         (error) => {
-          onError();
+          onError && onError();
           console.error(error);
         },
       );
   } else {
-    onError();
+    onError && onError();
     console.log(
       'no EMAILJS_SERVICE_ID || EMAILJS_TEMPLATE_ID || EMAILJS_PUBLIC_KEY detected',
     );

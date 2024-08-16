@@ -43,6 +43,9 @@ const MeetingRoom = () => {
     callStartsAt && new Date(callStartsAt) > new Date();
   const callHasEnded = !!callEndedAt;
   const { user } = useUser();
+  const participants = call?.state.participants
+
+  console.log(participants)
 
   // for more detail about types of CallingState see: https://getstream.io/video/docs/react/ui-cookbook/ringing-call/#incoming-call-panel
   const callingState = useCallCallingState();
@@ -55,6 +58,7 @@ const MeetingRoom = () => {
         return <SpeakerLayout participantsBarPosition={'top'} />;
     }
   }, [layout]);
+
 
   if (callingState !== CallingState.JOINED) return <Loader />;
 
@@ -129,6 +133,10 @@ const MeetingRoom = () => {
         </button>
         {!isPersonalRoom && <EndCallButton />}
       </div>
+
+      <div>{participants?.map((participant) => <div key={participant.userId}>
+
+      </div>)}</div>
     </section>
   );
 };
