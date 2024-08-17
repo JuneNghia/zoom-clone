@@ -1,13 +1,18 @@
+'use client'
+
 import Image from 'next/image';
-import Link from 'next/link';
 import { SignedIn, UserButton } from '@clerk/nextjs';
 
 import MobileNav from './MobileNav';
+import { useCallback } from 'react';
 
 const Navbar = () => {
+  const handleClickLogo = useCallback(() => {
+    location.reload()
+  }, [])
   return (
     <nav className="flex-between fixed z-50 w-full bg-dark-1 px-6 py-4 lg:px-10">
-      <Link href="/" className="flex items-center gap-1">
+      <div className="flex cursor-pointer items-center gap-1" onClick={handleClickLogo}>
         <Image
           src="/images/ca-studio.png"
           width={100}
@@ -18,7 +23,7 @@ const Navbar = () => {
         <p className="ml-2 text-[26px] font-extrabold text-white max-sm:hidden">
           C.Astudio-On
         </p>
-      </Link>
+      </div>
       <div className="flex-between gap-5">
         <SignedIn>
           <UserButton afterSignOutUrl="/sign-in" />

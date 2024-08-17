@@ -45,8 +45,6 @@ const MeetingRoom = () => {
   const { user } = useUser();
   const participants = call?.state.participants
 
-  console.log(participants)
-
   // for more detail about types of CallingState see: https://getstream.io/video/docs/react/ui-cookbook/ringing-call/#incoming-call-panel
   const callingState = useCallCallingState();
 
@@ -118,7 +116,7 @@ const MeetingRoom = () => {
           <button
             onClick={async () => {
               await call?.muteAllUsers('audio');
-              notify('success', 'Muted all users');
+              notify('success', 'Đã tắt Micro toàn bộ thành viên');
             }}
           >
             <div className="cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]">
@@ -131,7 +129,6 @@ const MeetingRoom = () => {
             <Users size={20} className="text-white" />
           </div>
         </button>
-        {!isPersonalRoom && <EndCallButton />}
       </div>
 
       <div>{participants?.map((participant) => <div key={participant.userId}>

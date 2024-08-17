@@ -21,14 +21,10 @@ const MeetingSetup = ({
   setIsSetupComplete: (value: boolean) => void;
 }) => {
   // https://getstream.io/video/docs/react/guides/call-and-participant-state/#call-state
-  const { useCallEndedAt, useCallStartsAt } = useCallStateHooks();
-  const callStartsAt = useCallStartsAt();
+  const { useCallEndedAt } = useCallStateHooks();
   const callEndedAt = useCallEndedAt();
-  const callTimeNotArrived =
-    callStartsAt && new Date(callStartsAt) > new Date();
   const callHasEnded = !!callEndedAt;
   const router = useRouter();
-  const { user } = useUser();
   const [isLoading, setIsLoading] = useState(false);
 
   const call = useCall();
@@ -85,34 +81,24 @@ const MeetingSetup = ({
           if (confirm.isConfirmed) {
             setIsLoading(true);
 
-            sendEmail(
-              user,
-              () => router.push('/'),
-              () => router.push('/'),
-            );
+            router.push('/')
           } else if (confirm.dismiss) {
             handleJoin();
           }
         });
       }
     });
-  }, [call, router, setIsSetupComplete, user]);
+  }, [call, router, setIsSetupComplete]);
 
   if (isLoading) {
     return <Loader />;
   }
 
-  if (callTimeNotArrived)
-    return (
-      <Alert
-        title={`Your Meeting has not started yet. It is scheduled for ${callStartsAt.toLocaleString()}`}
-      />
-    );
 
   if (callHasEnded)
     return (
       <Alert
-        title="The call has been ended by the host"
+        title="Cuộc họp đã kết thúc bởi chủ phòng"
         iconUrl="/icons/call-ended.svg"
       />
     );
