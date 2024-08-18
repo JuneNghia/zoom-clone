@@ -8,7 +8,7 @@ export const sidebarLinks = [
   },
 ];
 
-export const listAdmin = ['nguyenminhtrungnghia@gmail.com'];
+export const listAdmin = ['nguyenminhtrungnghia@gmail.com', 'c.arevitonline@gmail.com'];
 
 export const listLayout = [
   {

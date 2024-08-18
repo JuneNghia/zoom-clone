@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   CallControls,
   CallParticipantsList,
@@ -20,7 +20,6 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import Loader from './Loader';
-import EndCallButton from './EndCallButton';
 import { cn } from '@/lib/utils';
 import notify from '@/lib/notify';
 import Alert from './Alert';
@@ -30,20 +29,16 @@ import { CallLayoutType } from '@/lib/enum';
 
 const MeetingRoom = () => {
   const searchParams = useSearchParams();
-  const isPersonalRoom = !!searchParams.get('personal');
   const router = useRouter();
   const [layout, setLayout] = useState<CallLayoutType>(listLayout[1].value);
   const [showParticipants, setShowParticipants] = useState(false);
   const { useCallCallingState, useCallEndedAt, useCallStartsAt } =
     useCallStateHooks();
   const call = useCall();
-  const callStartsAt = useCallStartsAt();
   const callEndedAt = useCallEndedAt();
-  const callTimeNotArrived =
-    callStartsAt && new Date(callStartsAt) > new Date();
   const callHasEnded = !!callEndedAt;
   const { user } = useUser();
-  const participants = call?.state.participants
+  const participants = call?.state.participants;
 
   // for more detail about types of CallingState see: https://getstream.io/video/docs/react/ui-cookbook/ringing-call/#incoming-call-panel
   const callingState = useCallCallingState();
@@ -53,24 +48,33 @@ const MeetingRoom = () => {
       case CallLayoutType.grid:
         return <PaginatedGridLayout />;
       case CallLayoutType.speaker:
-        return <SpeakerLayout participantsBarPosition={'top'} />;
+        return (
+          <SpeakerLayout
+            participantsBarLimit={2}
+            participantsBarPosition={'top'}
+          />
+        );
     }
   }, [layout]);
 
+  useEffect(() => {
+    if (call) {
+      const audio = new Audio('/audio/beep.mp3');
+
+      const unsubscribe = call.on('call.reaction_new', () => audio.play());
+
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [call]);
 
   if (callingState !== CallingState.JOINED) return <Loader />;
-
-  if (callTimeNotArrived)
-    return (
-      <Alert
-        title={`Your Meeting has not started yet. It is scheduled for ${callStartsAt.toLocaleString()}`}
-      />
-    );
 
   if (callHasEnded)
     return (
       <Alert
-        title="The call has been ended by the host"
+        title="Phòng họp đã kết thúc bởi chủ phòng"
         iconUrl="/icons/call-ended.svg"
       />
     );
@@ -131,9 +135,11 @@ const MeetingRoom = () => {
         </button>
       </div>
 
-      <div>{participants?.map((participant) => <div key={participant.userId}>
-
-      </div>)}</div>
+      <div>
+        {participants?.map((participant) => (
+          <div key={participant.userId}></div>
+        ))}
+      </div>
     </section>
   );
 };

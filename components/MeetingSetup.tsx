@@ -51,12 +51,13 @@ const MeetingSetup = ({
   const handleJoin = useCallback(() => {
     Swal.fire({
       title: 'Thông báo',
-      html: `Để bảo vệ quyền sở hữu trí tuệ, bạn vui lòng nhấn vào nút <b class='text-green-700'>CHO PHÉP</b> dưới đây với các quyền sau: <br/><br/><div class='text-left font-bold text-blue-700'><span>- Truy cập thông tin cá nhân</span><br/><span>- Theo dõi hành vi chụp ảnh / quay màn hình</span><br/></div><br/><span class='text-red-500 font-bold'>Vui lòng không chụp ảnh màn hình, quay màn hình dưới mọi hình thức trong quá trình học. </span><br/><br/><span>Nếu hệ thống phát hiện hành vi bất thường, trung tâm sẽ truy cứu trách nhiệm tới bạn. <br/><br/>Cảm ơn sự hợp tác của bạn!</span>`,
+      html: `Để bảo vệ quyền sở hữu trí tuệ, bạn vui lòng nhấn vào nút <b class='text-green-700'>TÔI ĐỒNG Ý</b> dưới đây để cam kết: 
+      <br/></div><br/><span class='text-red-500 font-bold'>Không chụp ảnh màn hình, quay màn hình dưới mọi hình thức trong quá trình học. </span><br/><br/><span>Nếu hệ thống phát hiện hành vi bất thường, trung tâm sẽ truy cứu trách nhiệm tới bạn. <br/><br/>Cảm ơn sự hợp tác của bạn!</span>`,
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Từ chối',
       cancelButtonColor: 'red',
-      confirmButtonText: 'Cho phép',
+      confirmButtonText: 'Tôi đồng ý',
       confirmButtonColor: 'green',
       allowEscapeKey: false,
       allowOutsideClick: false,
