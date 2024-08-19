@@ -79,8 +79,8 @@ export const viVN: LocalizationResource = {
   formFieldLabel__emailAddress: 'Địa chỉ email',
   formFieldLabel__emailAddress_username: 'Địa chỉ email hoặc tên người dùng',
   formFieldLabel__emailAddresses: 'Các địa chỉ email',
-  formFieldLabel__firstName: 'Tên',
-  formFieldLabel__lastName: 'Họ',
+  formFieldLabel__firstName: 'STT (VD: 1- )',
+  formFieldLabel__lastName: 'Họ và tên',
   formFieldLabel__newPassword: 'Mật khẩu mới',
   formFieldLabel__organizationDomain: 'Domain',
   formFieldLabel__organizationDomainDeletePending:
