@@ -13,7 +13,7 @@ import { viVN } from '@/public/locales/vi-VN';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'C.Astudio-On',
+  title: 'C.Astudio-On 1',
   description: 'Video calling App',
   icons: {
     icon: '/images/ca-studio.png',
@@ -26,6 +26,7 @@ export default function RootLayout({
   return (
     <ClerkProvider
       localization={viVN}
+      afterSignUpUrl={'/'}
       appearance={{
         layout: {
           socialButtonsVariant: 'blockButton',

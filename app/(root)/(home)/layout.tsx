@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 
 export const metadata: Metadata = {
-  title: 'C.Astudio-On',
+  title: 'C.Astudio-On 1',
   description: 'Phòng họp trực tuyến bảo mật',
 };
 
