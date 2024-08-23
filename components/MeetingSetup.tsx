@@ -11,9 +11,7 @@ import Alert from './Alert';
 import { Button } from './ui/button';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@clerk/nextjs';
 import Loader from './Loader';
-import sendEmail from '@/lib/sendEmail';
 
 const MeetingSetup = ({
   setIsSetupComplete,
