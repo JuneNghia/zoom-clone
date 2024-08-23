@@ -13,7 +13,7 @@ import { viVN } from '@/public/locales/vi-VN';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'C.Astudio-On 1',
+  title: process.env.NEXT_PUBLIC_APP_NAME,
   description: 'Video calling App',
   icons: {
     icon: '/images/ca-studio.png',

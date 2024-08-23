@@ -21,7 +21,7 @@ const Navbar = () => {
         />
 
         <p className="ml-2 text-[26px] font-extrabold text-white max-sm:hidden">
-          C.Astudio-On 1
+          {process.env.NEXT_PUBLIC_APP_NAME}
         </p>
       </div>
       <div className="flex-between gap-5">
