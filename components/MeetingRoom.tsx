@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import {
   CallControls,
   CallParticipantsList,
+  CallStatsButton,
   CallingState,
   PaginatedGridLayout,
   SpeakerLayout,
@@ -93,7 +94,7 @@ const MeetingRoom = () => {
 
       <div className="flex items-center justify-center gap-x-5">
         <CallControls onLeave={() => router.push(`/`)} />
-
+        <CallStatsButton />
         <DropdownMenu>
           <div className="flex items-center">
             <DropdownMenuTrigger className="rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]  ">
