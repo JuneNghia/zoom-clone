@@ -26,7 +26,6 @@ export default function RootLayout({
   return (
     <ClerkProvider
       localization={viVN}
-      afterSignUpUrl={'/'}
       appearance={{
         layout: {
           socialButtonsVariant: 'blockButton',
