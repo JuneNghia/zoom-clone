@@ -8,12 +8,13 @@ import Error from 'next/error';
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const { user } = useUser();
-  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (user && user.primaryEmailAddress) {
-        const fullName = `${user?.firstName} ${user?.lastName}`;
+        const fullName = [user.firstName, user.lastName]
+          .filter(Boolean)
+          .join(' ');
         localStorage.setItem(
           'dataUser',
           `${fullName.trim()} - ${user.primaryEmailAddress.emailAddress}`,
@@ -24,9 +25,6 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return () => clearInterval(intervalId);
   }, [user]);
 
-  if (isError) {
-    return <Error statusCode={401} />;
-  }
   return (
     <main>
       <StreamVideoProvider>{children}</StreamVideoProvider>
