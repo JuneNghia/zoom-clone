@@ -19,6 +19,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
           'dataUser',
           `${fullName.trim()} - ${user.primaryEmailAddress.emailAddress}`,
         );
+        localStorage.setItem('hostname', window.location.hostname);
       }
     }, 1000);
 
