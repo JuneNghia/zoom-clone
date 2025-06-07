@@ -50,7 +50,7 @@ const MeetingSetup = ({
     Swal.fire({
       title: 'Thông báo',
       html: `Để bảo vệ quyền sở hữu trí tuệ, bạn vui lòng nhấn vào nút <b class='text-green-700'>TÔI ĐỒNG Ý</b> dưới đây để cam kết: 
-      <br/></div><br/><span class='text-red-500 font-bold'>Không chụp ảnh màn hình, quay màn hình dưới mọi hình thức trong quá trình học. </span><br/><br/><span>Nếu hệ thống phát hiện hành vi bất thường, trung tâm sẽ truy cứu trách nhiệm tới bạn. <br/><br/>Cảm ơn sự hợp tác của bạn!</span>`,
+      <br/></div><br/><span class='text-red-500 font-bold'>Không chụp ảnh màn hình, quay màn hình, sử dụng thiết bị khác để livestream, chia sẻ khóa học cho người thứ 3 dưới mọi hình thức trong quá trình học. </span><br/><br/><span>Nếu hệ thống phát hiện hành vi bất thường, trung tâm sẽ <span class='text-blue-700 font-bold'>ĐÌNH CHỈ HỌC VĨNH VIỄN</span> người vi phạm. <br/><br/>Cảm ơn sự hợp tác của bạn!</span>`,
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Từ chối',
